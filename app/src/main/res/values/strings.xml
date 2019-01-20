@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Beverage Tracker</string>
+
+    <string name="beverage_id">Id:</string>
+    <string name="beverage_name">Name</string>
+    <string name="beverage_pack">Pack:</string>
+    <string name="beverage_price">Price:</string>
+    <string name="beverage_active">Active:</string>
+
+    <string name="beverage_id_hint">Item Id</string>
+    <string name="beverage_name_hint">Item Name</string>
+    <string name="beverage_pack_hint">Item Pack</string>
+    <string name="beverage_price_hint">Item Price</string>
 </resources>
