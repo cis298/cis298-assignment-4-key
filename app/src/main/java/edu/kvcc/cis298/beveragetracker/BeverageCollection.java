@@ -15,8 +15,11 @@ public class BeverageCollection {
     //List to store all of the beverages
     private List<Beverage> mBeverages;
 
+    // Boolean for whether the data has been loaded once
+    private boolean dataLoadedOnce;
+
     //public static method to get the single instance of this class
-    public static BeverageCollection get() {
+    static BeverageCollection get() {
         //If the collection is null
         if (sBeverageCollection == null) {
             //make a new one
@@ -30,10 +33,12 @@ public class BeverageCollection {
     private BeverageCollection() {
         //Make a new list to hold the beverages
         mBeverages = new ArrayList<>();
+        // Initialize dataLoadedOnce to False
+        dataLoadedOnce = false;
     }
 
     //Getters
-    public List<Beverage> getBeverages() {
+    List<Beverage> getBeverages() {
         return mBeverages;
     }
 
@@ -46,8 +51,18 @@ public class BeverageCollection {
         return null;
     }
 
+    // Getter to see if the list is empty
+    public boolean isEmpty() {
+        return mBeverages.isEmpty();
+    }
+
+    // Getter to see if the data has been loaded once.
+    public boolean isDataLoadedOnce() {
+        return dataLoadedOnce;
+    }
+
     //Method to load the beverage list from a CSV file
-    public void loadBeverageList(InputStream inputStream) {
+    void loadBeverageList(InputStream inputStream) {
 
         //Define a scanner
         try (Scanner scanner = new Scanner(inputStream)) {
@@ -71,6 +86,9 @@ public class BeverageCollection {
                 //Add the beverage to the list
                 mBeverages.add(new Beverage(id, name, pack, price, active));
             }
+
+            // Data read in, so set the dataLoadedOnce flag to true.
+            dataLoadedOnce = true;
 
             //catch any errors that occur and finally close the scanner
         } catch (Exception e) {
